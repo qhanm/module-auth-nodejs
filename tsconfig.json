@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es6", // hoặc bất kỳ phiên bản JavaScript nào mà bạn muốn hỗ trợ
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true, // Bật chế độ experimentalDecorators
+    "emitDecoratorMetadata": true, // Bật chế độ emitDecoratorMetadata
+  }
+}
