@@ -8,4 +8,5 @@ export class StatusCode {
   static NOT_FOUND = 404;
   static METHOD_NOT_ALLOWED = 405;
   static TOO_MANY_REQUEST = 429;
+  static SERVER_INTERNAL_ERROR = 500;
 }

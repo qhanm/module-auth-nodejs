@@ -8,7 +8,10 @@ import { ValidationError } from "class-validator";
 import { ObjectLiteral } from "typeorm";
 import { StatusTypeConst } from "../const/status-type.const";
 import { StatusCode } from "../const/status-code.const";
-import { StandardResponse } from "./StandardResponse";
+import {
+  ServerInternalErrorResponse,
+  StandardResponse,
+} from "./StandardResponse";
 
 @Middleware({ type: "after" })
 export class CustomErrorHandler implements ExpressErrorMiddlewareInterface {
@@ -43,7 +46,7 @@ export class CustomErrorHandler implements ExpressErrorMiddlewareInterface {
         errors: error.message,
       });
     } else {
-      next(error);
+      response.status(500).json(new ServerInternalErrorResponse());
     }
   }
 }

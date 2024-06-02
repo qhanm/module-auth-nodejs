@@ -5,18 +5,21 @@ import { CreateUserDto } from "../dto/user/create-user-dto";
 import { UserResponse } from "../responses/user.response";
 
 export class UserService {
-  private userRepository = AppDataSource.getRepository(User);
+  private userRepository: Repository<User>;
 
   constructor() {
-    // this.userRepository = AppDataSource.getRepository(User);
+    this.userRepository = AppDataSource.getRepository(User);
   }
 
   async create(modelDto: CreateUserDto): Promise<UserResponse> {
-    const entity = this.userRepository.create(modelDto);
-    console.log(entity);
-    const user = await this.userRepository.save(entity);
+    try {
+      const entity = this.userRepository.create(modelDto);
+      const user = await this.userRepository.save(entity);
 
-    return this.toUserResponseDto(user);
+      return this.toUserResponseDto(user);
+    } catch (err) {
+      throw new Error(`Failed create user`);
+    }
   }
 
   private toUserResponseDto(user: User): UserResponse {
